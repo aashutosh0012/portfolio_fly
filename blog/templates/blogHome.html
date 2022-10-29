@@ -1,0 +1,69 @@
+{% extends 'templates/_base.html' %}
+
+{% block title %} Blog {% endblock %}
+{% block content %}
+
+<div class="d-flex container-fluid flex-column text-break" id="blog">
+	<div class='row'>
+		<div class="col-md-2 small border-right text-break" >
+			<ul class="list-group list-group-flush">
+				<!-- <li class="list-group-item"> <a href="{% url 'blog-home' %}"> All</a></li> -->
+				<li class="list-group-item"> <a href="{% url 'tag-filter' 'all' %}"> All Posts</a></li>
+				{% for tag in allTags %}
+					<li class="list-group-item"> <a href="{% url 'tag-filter' tag.name|slugify %}"> {{tag}} ({{tag.tagCount}})</a></li>
+				{% endfor %}
+			</ul>
+		</div>		
+		<div class="col-md-10 ">
+			<div class="list-group list-group-item-action list-group-flush border-bottom">
+				<!-- list-group-flush to remove some borders and rounded corners to render list group items edge-to-edge -->
+				{% for post in post_list %}
+					<a class="list-group-item list-group-item-action" href="{% url 'post-detail' post.pk %}">	
+						<h4 class='p-0 m-0'>{{ post.title }}</h4>						
+						<small class='text-info p-0 m-0'>
+							<i>
+							{{ post.author }}, {{post.created}}
+							{% if post.tag %}
+								{% for post_tag in post.tag.all %}						
+									<span class='mx-1'> #{{post_tag}}</span>
+								{% endfor %}
+							{% endif %}
+							</i>
+						</small>
+
+						{% if post.summary %}
+							<p class='p-0 m-0'>{{ post.summary|safe }}</p>
+						{% endif %}
+
+						<!-- <p>{{ post.body | safe | slice:":200"}}</p> -->
+						<!-- #safe Filter allows to escape/render html tags/codes in DB model field in the template ex:<p><b>Inside P Tag</b></p>. -->
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<!--  Pagination | Add Link to Next, Previous, First & Last Posts pages -->	
+	<div class="text-center mt-3">
+	{% if is_paginated %}
+  		{% if page_obj.has_previous %}
+    		<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+	        <!-- {% if page_obj.number != 2 %} -->
+	        	<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+	        <!-- {% endif %} -->
+  		{% endif %}
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

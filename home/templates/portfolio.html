@@ -1,0 +1,228 @@
+{% extends 'templates/_base.html' %}
+
+
+<!-- Load CSS from Child Page after Base Template -->
+{% block css %}
+	<!-- Load Static Logos/Images -->
+	{% load static %}
+
+	<!-- CSS for Star Rating classes -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Custom CSS for Index Page -->
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+	<div class="d-flex justify-content-around align-content-center border">
+		<div class="row align-items-center">
+			<div class="col-sm-4 text-center">
+				<h2>Aashutosh Kumar</h2>
+				<p>Hunting problems via Engineering.</p>
+			</div>
+			<div class="col-sm-8 m-auto text-center ">
+				<img class="img-fluid mb-3" src="{% static 'images/me.jpg' %}" class="rounded" style="width:70%">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="d-flex cards-flex justify-content-center align-items-center m-3 flex-wrap" id="accordion">
+
+		<div class="m_card text-center">
+			<img class="rounded p-3 " src="{% static 'images/django_logo.png' %}" style="max-width:100%" >
+			<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapsingDjango" aria-expanded="false" aria-controls="collapsingDjango" >
+				Django Developer 
+				<img src="{% static 'images/hand.png' %}" style="max-width:15%">
+			</button>			
+			<div class="collapse" id="collapsingDjango" data-parent="#accordion">
+				<ul class="list-unstyled">
+					<li>HTML</li>
+					<li>CSS</li>
+					<li>Bootstrap</li>
+				</ul>	
+			</div>
+			<div class="card-footer bg-light text-dark rounded m-2">
+				<small class="text-muted">Self Rating: 
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star unchecked"></span>
+					<span class="fa fa-star unchecked"></span>
+				</small>
+			</div>
+		</div>
+
+		<div class="m_card text-center">
+			<img class="rounded p-3 " src="{% static 'images/python_logo.png' %}" style="max-width:100%" >
+			<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapsingPython" aria-expanded="false" aria-controls="collapsingPython">
+				Python Programmer
+				<img src="{% static 'images/hand.png' %}"  style="max-width:15%">
+			</button>
+			<div class="collapse" id="collapsingPython" data-parent="#accordion">
+				<ul class="list-unstyled">
+					<li>Web Scrapping</li>
+					<li>Working with REST APIS</li>
+					<li>Infrastructure automation</li>
+					<li>Building GUI Apps</li>
+					<li>Scripts for DBs & Servers</li>
+					<li>Classes, MultiThreading</li>
+				</ul>	
+			</div>
+			<div class="card-footer bg-light text-dark rounded m-2">
+				<small class="text-muted">Self Rating: 
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star unchecked"></span>
+				</small>
+			</div>
+		</div>
+
+		<div class="m_card text-center">
+			<img class="rounded p-3 " src="{% static 'images/dba_logo.png' %}" style="max-width:100%" >
+			<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapsingDBA" aria-expanded="false" aria-controls="collapsingDBA">
+				Database Administrator
+				<img src="{% static 'images/hand.png' %}"  style="max-width:15%">
+			</button>
+				<div class="collapse" id="collapsingDBA" data-parent="#accordion">
+					<ul class="list-unstyled">
+						<li>Oracle</li>
+						<li>SQL Server</li>
+						<li>MySQL</li>
+						<li>PostgreSQL</li>
+					</ul>	
+				</div>
+				<div class="card-footer bg-light text-dark rounded m-2">
+					<small class="text-muted">Self Rating: 
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star unchecked"></span>
+						<span class="fa fa-star unchecked"></span>
+					</small>
+				</div>
+		</div>
+
+		<div class="m_card text-center">
+			<img class="rounded p-3 " src="{% static 'images/scripting_logo.png' %}" style="max-width:100%" >
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsingScripting" aria-expanded="false" aria-controls="collapsingScripting">
+				Automation Tools & Scripting
+				<img src="{% static 'images/hand.png' %}"  style="max-width:15%">
+			</button>
+			<div class="collapse" id="collapsingScripting" data-parent="#accordion">
+				<ul class="list-unstyled">
+					<li>Shell Scriting</li>
+					<li>PowerShell Scriting</li>
+					<li>Jenkins</li>
+					<li>Ansible</li>
+				</ul>	
+			</div>
+			<div class="card-footer bg-light text-dark rounded m-2">
+				<small class="text-muted">Self Rating: 
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star unchecked"></span>
+					<span class="fa fa-star unchecked"></span>
+				</small>
+			</div>
+		</div>
+
+		<div class="m_card text-center">
+			<img class="rounded p-3 " src="{% static 'images/linux1.png' %}" style="max-width:100%" >
+			<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapsingLinux" aria-expanded="false" aria-controls="collapsingLinux">
+				Linux Administration
+				<img src="{% static 'images/hand.png' %}"  style="max-width:15%">
+			</button>
+			<div class="collapse" id="collapsingLinux" data-parent="#accordion">
+				<ul class="list-unstyled">
+					<li>Shell Scriting</li>
+					<li>User & Groups, Security Management</li>
+					<li>Cronjobs</li>
+					<li>Package Installation</li>
+					<li>Automated Housekeeping</li>
+					<li>FS & Backups</li>
+					<li>Auto Services</li>
+					<li></li>
+				</ul>	
+			</div>
+			<div class="card-footer bg-light text-dark rounded m-2">
+				<small class="text-muted">Self Rating: 
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star unchecked"></span>
+				</small>
+			</div>
+		</div>
+
+
+		<div class="m_card text-center">
+			<img class="rounded p-3 " src="{% static 'images/git-gcp.png' %}" style="max-width:100%" >
+			<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapsingGit" aria-expanded="false" aria-controls="collapsingGit">
+				Git & Cloud
+				<img src="{% static 'images/hand.png' %}"  style="max-width:15%">
+			</button>
+			<div class="collapse" id="collapsingGit" data-parent="#accordion">
+				<ul class="list-unstyled">
+					<li>Working with Git & GitHub</li>
+					<li>Deploying Apps to Google Cloud & Heroku</li>
+					<li>GCP App Engines</li>
+					<li>GCP Compute Engines</li>
+					<li></li>
+				</ul>	
+			</div>
+			<div class="card-footer bg-light text-dark rounded m-2">
+				<small class="text-muted">Self Rating: 
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star unchecked"></span>
+					<span class="fa fa-star unchecked"></span>
+				</small>
+			</div>
+		</div>
+
+		<div class="m_card text-center">
+			<img class="rounded p-3 " src="{% static 'images/jira-logo.png' %}" style="max-width:100%" >
+			<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapsingJira" aria-expanded="false" aria-controls="collapsingJira">
+				Jira Development
+				<img src="{% static 'images/hand.png' %}"  style="max-width:15%">
+			</button>
+			<div class="collapse" id="collapsingJira" data-parent="#accordion">
+				<ul class="list-unstyled">
+					<li>Dyanmic Forms</li>
+					<li>Complex workflows & Multi level Approvals based on thresholds.</li>
+					<li>Integration with external data source</li>
+					<li>Advanced automation using REST APIs, python programs, Webhooks, Github-Actions</li>
+					<li>Teams integration</li>
+					<li>PowerBI Dashboards within Jira </li>
+					<li></li>
+				</ul>	
+			</div>
+			<div class="card-footer bg-light text-dark rounded m-2">
+				<small class="text-muted">Self Rating: 
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+				</small>
+			</div>
+		</div>
+
+
+	</div>
+
+<!-- <div>
+	<br>
+	<hr>
+</div>
+ -->
+
+{% endblock %}		

@@ -1,0 +1,67 @@
+
+/*body{
+	background-color: #F3F7F7;
+}*/
+
+/*Star Rating Full and Blank Colors*/
+.checked {
+	color:#4781FA;
+}
+
+.unchecked {
+	color:#626364;
+}
+
+
+/*Manual/Custom Card*/
+.m_card {
+	background-color: #7499E7;
+	margin:10px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	border-radius: 5px;
+	width:20vw
+}
+
+.m_card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.cards-flex {
+	margin: auto;
+}
+
+
+/*Responsive Heading and Paragraph Size, Cards Columns*/
+/*@media all --> Default*/
+@media (max-width: 768px) {
+	h2, p, card-footer {
+		font-size: 0.9em;
+	}
+
+	.cards-flex {
+		flex-direction: column;
+	}
+
+	.m_card {
+		width: 50vw;
+	}
+}
+
+@media (max-width: 500px) {
+	h2, p, card-footer {
+		font-size: 0.85em;
+	}
+	.cards-flex {
+		flex-direction: column;
+	}
+
+	.m_card {
+		width: 50vw;
+	}
+	
+}
+
+
+@media ()

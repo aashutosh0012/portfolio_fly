@@ -1,0 +1,61 @@
+{% extends 'templates/_base.html' %}
+{% block title %} {{ post.title }} {% endblock %}
+{% block content %}
+{% load static %}
+
+
+<div class="container  text-break">
+
+	<!-- #Display only Approved Posts -->
+	{% if post.is_approved %}
+
+		<h1>{{ post.title }}</h1>
+		<small class='text-info'><i>Author: {{ post.author }}, Updated: {{ post.updated | date:'j M Y g:i a' }}</i></small>
+		
+		{% if post.summary %}
+			<p class="bg-light border-outline">{{ post.summary|safe }}</p>
+		{% endif %}
+
+		<p>{{ post.body|safe }}</p>
+		<!-- #safe Filter allows to escape/render html tags/codes in DB model field in the template ex:<p><b>Inside P Tag</b></p>. -->
+		<div class='flex small m-2'>
+			<div class='row'>
+				{% if user.is_authenticated %} 			
+					{% if liked %}
+						<form action="{% url 'like-post' post.pk %}" method="POST" class=' my-0 py-0 mr-2'> {% csrf_token %}
+							<button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary btn-sm py-0" title="Unlike this Post">
+								<small>Unlike</small>
+								<img src="{% static 'images/vote.svg' %}"><small class="text-light ml-1">({{likes}})</small></button>
+						</form>				
+					{% else %}
+						<form action="{% url 'like-post' post.pk %}" method="POST" class='my-0 py-0 mr-2'> {% csrf_token %}
+							<button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary btn-sm py-0" title="Like this Post">	
+								<small>Like</small>
+								<img src="{% static 'images/vote.svg' %}"><small class="text-light ml-1 ">({{likes}})</small></button>
+						</form>
+					{% endif %}	
+				{% endif %}
+				{% if user.is_authenticated and user.id == post.author.id %}
+				<a class='mx-2' href="{% url 'edit-post' post.pk %}">Edit</a>
+				<a class='mx-2' href="{% url 'delete-post' post.pk %}">Delete</a>
+				{% endif %}
+				<p class='text-muted mx-2'><i>Created: {{ post.created | date:'j M Y g:i a' }}</i></p>
+				{% if post_tags %}
+					<p class='text-muted'>Tags:  </p>
+					{% for post_tag in post_tags %}
+					<span>
+					<a class='bg-info text-white mx-1' href="{% url 'tag-filter' post_tag|slugify %}"><i> #{{post_tag}} </i></a>
+					</span>
+					{% endfor %}	
+				{% endif %}
+			</div>
+		</div>	
+		
+	{% else %}
+		<p class="alert alert-primary mt-2" role="alert">This Post is awaiting approval and will be visible once approved. Thank you for Patience, keep reading.</p>
+		<h1>{{ post.title }} </h1>
+		<small class='text-info'><i>Author: {{ post.author }}, Created: {{ post.created | date:'j M Y g:i a' }}</i></small>
+	{% endif %}
+
+</div>
+{% endblock %}
